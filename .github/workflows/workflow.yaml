@@ -4,7 +4,7 @@ on:
     branches: [ main ]
     paths:
       - 'src/**'
-      - '.github/workflows/app-workflow.yaml'
+      - '.github/workflows/workflow.yaml'
 
 env:
   REGISTRY: ghcr.io
