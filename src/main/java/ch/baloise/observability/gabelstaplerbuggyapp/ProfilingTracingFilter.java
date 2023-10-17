@@ -24,15 +24,16 @@ public class ProfilingTracingFilter implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange serverWebExchange,
                              WebFilterChain webFilterChain) {
+        String traceId = "unknown";
+        String spanId = "unknown";
+        Span span = tracer.currentSpan();
+        if (span != null) {
+            traceId = span.context().traceId();
+            spanId = span.context().spanId();
+        }
+        log.info("Filter called with trace-id %s and span-id %s".formatted(traceId, spanId));
+
         return Pyroscope.LabelsWrapper.run(new LabelsSet("trace-id", traceId, "span-id", spanId), () -> {
-            String traceId = "unknown";
-            String spanId = "unknown";
-            Span span = tracer.currentSpan();
-            if (span != null) {
-                traceId = span.context().traceId();
-                spanId = span.context().spanId();
-            }
-            log.info("Filter called with trace-id %s and span-id %s".formatted(traceId, spanId));
             return webFilterChain.filter(serverWebExchange);
         });
     }
