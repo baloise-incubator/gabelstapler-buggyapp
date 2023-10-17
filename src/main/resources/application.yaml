@@ -10,9 +10,9 @@ management:
   tracing:
     sampling:
       probability: 1.0
-
-tracing:
-  url: ${TRACING_URL:http://localhost:4318/v1/traces}
+  otlp:
+    tracing:
+      endpoint: ${TRACING_URL:http://localhost:4318/v1/traces}
 
 logging:
   pattern:
