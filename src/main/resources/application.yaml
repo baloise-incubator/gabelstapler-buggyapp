@@ -7,6 +7,16 @@ management:
     web:
       exposure:
         include: [ "prometheus" ]
+  tracing:
+    sampling:
+      probability: 1.0
+
+tracing:
+  url: ${TRACING_URL:http://localhost:4318/v1/traces}
+
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
 
 pyroscope:
   url: ${PYROSCOPE_URL:http://pyroscope:4040}
