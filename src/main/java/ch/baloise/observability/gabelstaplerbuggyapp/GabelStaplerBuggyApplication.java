@@ -14,7 +14,7 @@ import reactor.core.publisher.Hooks;
 import java.time.Duration;
 
 @SpringBootApplication
-public class PyroscopeApplication {
+public class GabelStaplerBuggyApplication {
 
 	@Value("${spring.application.name}")
 	private String applicationName;
@@ -24,7 +24,7 @@ public class PyroscopeApplication {
 
 	public static void main(String[] args) {
 		Hooks.enableAutomaticContextPropagation();
-		SpringApplication.run(PyroscopeApplication.class, args);
+		SpringApplication.run(GabelStaplerBuggyApplication.class, args);
 	}
 
 	@PostConstruct
