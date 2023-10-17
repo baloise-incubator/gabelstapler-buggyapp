@@ -9,6 +9,7 @@ import io.pyroscope.javaagent.config.Config;
 import io.pyroscope.javaagent.EventType;
 import io.pyroscope.http.Format;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import reactor.core.publisher.Hooks;
 
 import java.time.Duration;
 
@@ -22,6 +23,7 @@ public class PyroscopeApplication {
 	private String pyroscopeUrl;
 
 	public static void main(String[] args) {
+		Hooks.enableAutomaticContextPropagation();
 		SpringApplication.run(PyroscopeApplication.class, args);
 	}
 

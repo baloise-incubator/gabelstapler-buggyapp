@@ -12,7 +12,7 @@ management:
       probability: 1.0
   otlp:
     tracing:
-      endpoint: ${TRACING_URL:http://localhost:4318/v1/traces}
+      endpoint: ${TRACING_URL:http://localhost:4317}
     metrics:
       export:
         enabled: false
