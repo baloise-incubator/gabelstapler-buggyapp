@@ -3,6 +3,7 @@ package ch.baloise.observability.gabelstaplerbuggyapp;
 import io.pyroscope.javaagent.PyroscopeAgent;
 import io.pyroscope.javaagent.api.Logger;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import io.pyroscope.javaagent.config.Config;
 import io.pyroscope.javaagent.EventType;
@@ -13,6 +14,9 @@ import java.time.Duration;
 
 @SpringBootApplication
 public class PyroscopeApplication {
+
+	@Value("${pyroscope.url}")
+	private String pyroscopeUrl;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PyroscopeApplication.class, args);
@@ -25,7 +29,7 @@ public class PyroscopeApplication {
 						.setApplicationName("spring-app")
 						.setProfilingEvent(EventType.ITIMER)
 						.setFormat(Format.JFR)
-						.setServerAddress("http://pyroscope:4040")
+						.setServerAddress(pyroscopeUrl)
 						// Optionally, if authentication is enabled, specify the API key.
 						// .setAuthToken(System.getenv("PYROSCOPE_AUTH_TOKEN"))
 						// Optionally, if you'd like to set allocation threshold to register events, in bytes. '0' registers all events

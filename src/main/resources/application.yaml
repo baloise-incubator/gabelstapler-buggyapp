@@ -1,1 +1,6 @@
+spring:
+  application:
+    name: Gabelstrapler Buggs App
 
+pyroscope:
+  url: ${PYROSCOPE_URL:http://pyroscope:4040}
