@@ -2,5 +2,11 @@ spring:
   application:
     name: Gabelstrapler Buggs App
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus" ]
+
 pyroscope:
   url: ${PYROSCOPE_URL:http://pyroscope:4040}

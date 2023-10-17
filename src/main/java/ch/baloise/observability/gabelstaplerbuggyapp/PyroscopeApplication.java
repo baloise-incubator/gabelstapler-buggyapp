@@ -15,6 +15,9 @@ import java.time.Duration;
 @SpringBootApplication
 public class PyroscopeApplication {
 
+	@Value("${spring.application.name}")
+	private String applicationName;
+
 	@Value("${pyroscope.url}")
 	private String pyroscopeUrl;
 
@@ -26,7 +29,7 @@ public class PyroscopeApplication {
 	public void init() {
 		PyroscopeAgent.start(
 				new Config.Builder()
-						.setApplicationName("spring-app")
+						.setApplicationName(applicationName)
 						.setProfilingEvent(EventType.ITIMER)
 						.setFormat(Format.JFR)
 						.setServerAddress(pyroscopeUrl)
