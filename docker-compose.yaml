@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  grafana:
+    image: grafana/grafana:main
+    hostname: "grafana"
+    container_name: "grafana"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+    environment:
+      - GF_FEATURE_TOGGLES_ENABLE=flameGraph
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    networks:
+      - pyroscope
+
+  pyroscope:
+    hostname: pyroscope
+    container_name: pyroscope
+    image: "grafana/pyroscope:latest"
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "4040:4040"
+    command:
+      - "server"
+    volumes:
+      - ./grafana/pyroscope-local-config.yaml:/etc/pyroscope/server.yaml
+    networks:
+      - pyroscope
+
+  spring:
+    hostname: spring
+    container_name: spring
+    build: ./spring-app
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8080:8080"
+#    environment:
+#      PYROSCOPE_APPLICATION_NAME: spring-app
+#      PYROSCOPE_SERVER_ADDRESS: http://pyroscope:4040
+#      PYROSCOPE_PROFILING_INTERVAL: 10ms
+#      PYROSCOPE_UPLOAD_INTERVAL: 15s
+#      PYROSCOPE_PROFILER_EVENT: itimer
+#      PYROSCOPE_PROFILER_LOCK: 10ms
+    networks:
+      - pyroscope
+
+networks:
+  pyroscope:
+    name: pyroscope

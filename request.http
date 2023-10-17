@@ -1,0 +1,15 @@
+### Example controller
+GET http://localhost:8080/example
+Accept: application/json
+
+### Example controller - long
+GET http://localhost:8080/example/long
+Accept: application/json
+
+### Example controller - cpu
+GET http://localhost:8080/example/cpu
+Accept: application/json
+
+### Example controller - memory
+GET http://localhost:8080/example/memory
+Accept: application/json
