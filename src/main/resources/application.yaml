@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Gabelstrapler Buggs App
+    name: gabelstrapler-buggs-app
 
 management:
   endpoints:
