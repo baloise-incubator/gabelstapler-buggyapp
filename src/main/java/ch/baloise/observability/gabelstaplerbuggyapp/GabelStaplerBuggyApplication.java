@@ -16,36 +16,30 @@ import java.time.Duration;
 @SpringBootApplication
 public class GabelStaplerBuggyApplication {
 
-	@Value("${spring.application.name}")
-	private String applicationName;
-
-	@Value("${pyroscope.url}")
-	private String pyroscopeUrl;
-
 	public static void main(String[] args) {
 		Hooks.enableAutomaticContextPropagation();
 		SpringApplication.run(GabelStaplerBuggyApplication.class, args);
 	}
 
-	@PostConstruct
-	public void init() {
-		PyroscopeAgent.start(
-				new Config.Builder()
-						.setApplicationName(applicationName)
-						.setProfilingEvent(EventType.ITIMER)
-						.setFormat(Format.JFR)
-						.setServerAddress(pyroscopeUrl)
-						// Optionally, if authentication is enabled, specify the API key.
-						// .setAuthToken(System.getenv("PYROSCOPE_AUTH_TOKEN"))
-						// Optionally, if you'd like to set allocation threshold to register events, in bytes. '0' registers all events
-						.setProfilingAlloc("0")
-						//.setSamplingDuration(Duration.)
-						.setLogLevel(Logger.Level.DEBUG)
-						.setProfilingLock("10ms")
-						.setProfilingInterval(Duration.ofMillis(10))
-						.setUploadInterval(Duration.ofSeconds(10))
-						.build()
-		);
-	}
+//	@PostConstruct
+//	public void init() {
+//		PyroscopeAgent.start(
+//				new Config.Builder()
+//						.setApplicationName(applicationName)
+//						.setProfilingEvent(EventType.ITIMER)
+//						.setFormat(Format.JFR)
+//						.setServerAddress(pyroscopeUrl)
+//						// Optionally, if authentication is enabled, specify the API key.
+//						// .setAuthToken(System.getenv("PYROSCOPE_AUTH_TOKEN"))
+//						// Optionally, if you'd like to set allocation threshold to register events, in bytes. '0' registers all events
+//						.setProfilingAlloc("0")
+//						//.setSamplingDuration(Duration.)
+//						.setLogLevel(Logger.Level.DEBUG)
+//						.setProfilingLock("10ms")
+//						.setProfilingInterval(Duration.ofMillis(10))
+//						.setUploadInterval(Duration.ofSeconds(10))
+//						.build()
+//		);
+//	}
 
 }

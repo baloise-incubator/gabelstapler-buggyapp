@@ -23,3 +23,5 @@ logging:
 
 pyroscope:
   url: ${PYROSCOPE_URL:http://pyroscope:4040}
+  frontend-url: ${PYROSCOPE_FRONTEND_URL:http://pyroscope:4040}
+  "https://pyroscope-monitoring-stack.apps.baloise.dev/"

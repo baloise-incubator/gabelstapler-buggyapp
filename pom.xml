@@ -42,6 +42,11 @@
 			<artifactId>agent</artifactId>
 			<version>0.12.1</version>
 		</dependency>
+		<dependency>
+			<groupId>io.pyroscope</groupId>
+			<artifactId>otel</artifactId>
+			<version>0.10.1.4</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.micrometer</groupId>
