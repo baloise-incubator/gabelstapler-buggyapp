@@ -59,7 +59,7 @@ public class OtlpConfiguration {
         return new PyroscopeOtelSpanProcessor(pyroscopeOtelConfig);
     }
 
-    // OtlpAutoConfiguration use HTTP by default, we update it to use GRPC
+    // OtlpAutoConfiguration use HTTP by default, we update it to use  GRPC
     // https://github.com/spring-projects/spring-boot/blob/main/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/tracing/otlp/OtlpAutoConfiguration.java
     @Bean
     public OtlpGrpcSpanExporter otlpExporter(final OtlpProperties properties) {
