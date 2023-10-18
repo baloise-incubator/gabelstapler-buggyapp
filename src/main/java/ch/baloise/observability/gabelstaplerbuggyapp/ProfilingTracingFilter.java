@@ -2,8 +2,8 @@ package ch.baloise.observability.gabelstaplerbuggyapp;
 
 import io.micrometer.tracing.Span;
 import io.micrometer.tracing.Tracer;
-import io.pyroscope.labels.LabelsSet;
-import io.pyroscope.labels.Pyroscope;
+import io.otel.pyroscope.shadow.labels.LabelsSet;
+import io.otel.pyroscope.shadow.labels.Pyroscope;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
