@@ -1,13 +1,6 @@
 package ch.baloise.observability.gabelstaplerbuggyapp;
 
-import io.pyroscope.javaagent.PyroscopeAgent;
-import io.pyroscope.javaagent.api.Logger;
-import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import io.pyroscope.javaagent.config.Config;
-import io.pyroscope.javaagent.EventType;
-import io.pyroscope.http.Format;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import reactor.core.publisher.Hooks;
 
