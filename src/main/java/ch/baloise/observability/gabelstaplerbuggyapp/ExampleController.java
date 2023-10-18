@@ -1,7 +1,5 @@
 package ch.baloise.observability.gabelstaplerbuggyapp;
 
-import io.pyroscope.labels.LabelsSet;
-import io.pyroscope.labels.Pyroscope;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
