@@ -1,8 +1,11 @@
 package ch.baloise.observability.gabelstaplerbuggyapp;
 
+import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporterBuilder;
+import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.SpanProcessor;
+import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
 import io.otel.pyroscope.PyroscopeOtelConfiguration;
 import io.otel.pyroscope.PyroscopeOtelSpanProcessor;
 import io.otel.pyroscope.shadow.http.Format;
@@ -57,6 +60,12 @@ public class OtlpConfiguration {
                 .setAddProfileBaselineURLs(true)
                 .build();
         return new PyroscopeOtelSpanProcessor(pyroscopeOtelConfig);
+    }
+
+    @Bean
+    Resource otelResource() {
+        return Resource.getDefault()
+                .merge(Resource.create(Attributes.of(ResourceAttributes.SERVICE_NAME, applicationName)));
     }
 
     // OtlpAutoConfiguration use HTTP by default, we update it to use  GRPC
