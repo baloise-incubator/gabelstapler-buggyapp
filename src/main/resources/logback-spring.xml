@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProfile name="local">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    </springProfile>
+
+    <springProfile name="default">
+        <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="jsonConsoleAppender"/>
+        </root>
+    </springProfile>
+
+<!--    <springProperty name="name" source="spring.application.name" />-->
+<!--    <springProperty name="lokiurl" source="loki.url" />-->
+
+<!--    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">-->
+<!--        <http>-->
+<!--            <url>${lokiurl}</url>-->
+<!--        </http>-->
+<!--        <format>-->
+<!--            <label>-->
+<!--                <pattern>app=${name},host=${HOSTNAME},traceID=%X{traceId:-NONE},level=%level</pattern>-->
+<!--                <readMarkers>true</readMarkers>-->
+<!--            </label>-->
+<!--            <message>-->
+<!--                <pattern>-->
+<!--                    {-->
+<!--                    "level":"%level",-->
+<!--                    "class":"%logger{36}",-->
+<!--                    "thread":"%thread",-->
+<!--                    "message": "%message",-->
+<!--                    "trace_id": "%X{traceId:-}",-->
+<!--                    "span_id": "%X{spanId:-}",-->
+<!--                    "stackTrace": "%ex"-->
+<!--                    }-->
+<!--                </pattern>-->
+<!--            </message>-->
+<!--            <sortByTime>true</sortByTime>-->
+<!--        </format>-->
+<!--    </appender>-->
+
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="LOKI" />-->
+<!--    </root>-->
+
+</configuration>
